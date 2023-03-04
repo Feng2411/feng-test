@@ -217,6 +217,8 @@
       </span>
       <a class="btn btn-success btn-lg count-button" style="background: #07c160; border: 0"
         onclick="set('inc')">计数+1</a>
+      <a class="btn btn-success btn-lg count-button" style="background: #07c160; border: 0"
+         onclick="getPrice()">读取价格</a>
       <div class="card" style="width: 320px; margin-bottom: 48px;">
         <div class="card-body">
           <img class="qrcode middle"
@@ -292,6 +294,15 @@
     }).done(function (res) {
       if (res && res.data !== undefined) {
         $(".count-number").html(res.data);
+      }
+    });
+  }
+  function getPrice() {
+    $.ajax("/gold/todayPrice", {
+      method: "get",
+    }).done(function (res) {
+      if (res && res.data !== undefined) {
+        console.log("res",res)
       }
     });
   }

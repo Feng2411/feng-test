@@ -4,13 +4,13 @@
 
     <resultMap id="goldPriceMapper" type="com.tencent.wxcloudrun.model.GoldPrice">
         <id property="id" column="id"/>
-        <result property="brand " column="brand"/>
+        <result property="brand" column="brand" />
         <result property="price" column="price" />
-        <result property="upTime" column="upTime" javaType="java.time.LocalDateTime"  />
+        <result property="upTime" column="upTime" javaType="java.util.Date"  />
     </resultMap>
 
     <select id="getPrice" resultMap="goldPriceMapper" parameterType="java.lang.String">
-        SELECT `id`, `brand`, `count`, `uptime`
+        SELECT `id`, `brand`, `price`, `uptime`
         FROM GoldPrice
         WHERE brand = #{brand}
     </select>

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 public class GoldPriceController {
     final GoldPriceService goldPriceService;
@@ -26,7 +28,12 @@ public class GoldPriceController {
      */
     @GetMapping(value = "/gold/todayPrice")
     ApiResponse getTodayGoldPrice() {
-        GoldPrice goldPrice = goldPriceService.getGoldPrice("zdf");
-        return ApiResponse.ok("今日金价"+goldPrice.getPrice());
+        Optional<GoldPrice> goldPrice = goldPriceService.getGoldPrice("zdf");
+        Integer initPrice = 0;
+        if (goldPrice.isPresent()) {
+            initPrice = goldPrice.get().getPrice();
+        }
+        System.out.println("今日金价"+initPrice);
+        return ApiResponse.ok("今日金价："+initPrice);
     }
 }
