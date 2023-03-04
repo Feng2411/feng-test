@@ -6,6 +6,8 @@ import com.tencent.wxcloudrun.service.GoldPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class GoldPriceServiceImpl implements GoldPriceService {
 
@@ -13,7 +15,7 @@ public class GoldPriceServiceImpl implements GoldPriceService {
     private GoldPriceMapper goldPriceMapper;
 
     @Override
-    public GoldPrice getGoldPrice(String brandName) {
-        return goldPriceMapper.getPrice(brandName);
+    public Optional<GoldPrice> getGoldPrice(String brandName) {
+        return Optional.ofNullable(goldPriceMapper.getPrice(brandName));
     }
 }
