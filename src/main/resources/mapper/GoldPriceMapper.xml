@@ -10,9 +10,10 @@
     </resultMap>
 
     <select id="getPrice" resultMap="goldPriceMapper" parameterType="java.lang.String">
-        SELECT `id`, `brand`, `price`, `uptime`
+        SELECT `id`, `brandName`, `price`, `uptime`
         FROM GoldPrice
-        WHERE brand = #{brand}
+        WHERE brandName = #{brand}
+        ORDER BY upTime DESC LIMIT 1
     </select>
 
 </mapper>

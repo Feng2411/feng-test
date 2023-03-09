@@ -15,7 +15,8 @@ public class GoldPriceServiceImpl implements GoldPriceService {
     private GoldPriceMapper goldPriceMapper;
 
     @Override
-    public Optional<GoldPrice> getGoldPrice(String brandName) {
-        return Optional.ofNullable(goldPriceMapper.getPrice(brandName));
+    public GoldPrice getGoldPrice(String brandName) {
+
+        return goldPriceMapper.getPrice(brandName);
     }
 }
