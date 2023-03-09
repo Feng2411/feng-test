@@ -5,5 +5,5 @@ import com.tencent.wxcloudrun.model.GoldPrice;
 import java.util.Optional;
 
 public interface GoldPriceService {
-    Optional<GoldPrice> getGoldPrice(String brandName);
+    GoldPrice getGoldPrice(String brandName);
 }

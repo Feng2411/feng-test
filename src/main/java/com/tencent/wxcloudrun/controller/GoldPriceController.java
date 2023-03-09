@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,12 +30,13 @@ public class GoldPriceController {
      */
     @GetMapping(value = "/gold/todayPrice")
     ApiResponse getTodayGoldPrice() {
-        Optional<GoldPrice> goldPrice = goldPriceService.getGoldPrice("zdf");
-        Integer initPrice = 0;
-        if (goldPrice.isPresent()) {
-            initPrice = goldPrice.get().getPrice();
-        }
-        System.out.println("今日金价"+initPrice);
-        return ApiResponse.ok("今日金价："+initPrice);
+        GoldPrice goldPriceZdf = goldPriceService.getGoldPrice("周大福");
+        GoldPrice goldPriceZss = goldPriceService.getGoldPrice("周生生");
+        GoldPrice goldPriceLf = goldPriceService.getGoldPrice("六福珠宝");
+        List<GoldPrice> goldPriceList = new ArrayList<>();
+        goldPriceList.add(goldPriceZdf);
+        goldPriceList.add(goldPriceZss);
+        goldPriceList.add(goldPriceLf);
+        return ApiResponse.ok(goldPriceList);
     }
 }
